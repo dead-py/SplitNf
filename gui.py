@@ -1,30 +1,69 @@
-from tkinter import *
+from tkinter import Label, Button, Entry, Frame, Grid, mainloop, Tk, Listbox, END
+from SplitNf import *
 
 
 class Application:
+
     def __init__(self, master=None):
+        master.minsize(width=245, height=250)
+        master.maxsize(width=245, height=250)
+        master.title("   NF Splitter")
+
         self.frame = Frame(master)
         self.frame.grid()
 
         self.lbl1 = Label(self.frame, text='NF')  # Frame para organização e amostragem dos gadgets
-        self.lbl1.grid(padx=5, pady=10, column=1, row=1)
+        self.lbl1.grid(padx=[15,1], pady=1, column=1, row=1)
 
         self.btn_split = Button(self.frame, text='Split')  # Botão 'Split'
-        self.btn_split["command"] = self.print_entry
-        self.btn_split.grid(padx=5, pady=10, column=3, row=1)
+        self.btn_split["command"] = self.print_data
+        self.btn_split.grid(padx=[1, 1], pady=1, column=3, row=1)
 
-        self.nf_entry = Entry(self.frame)  # Entrada de texto
-        self.nf_entry.grid(padx=5, pady=10, column=2, row=1)
+        self.btn_clear = Button(self.frame,  text='Clear')  # Botão 'Clear'
+        self.btn_clear["command"] = self.clear_data
+        self.btn_clear.grid(padx=[1,89], pady=5, column=2, row=5)
 
-        self.mensagem = Label(self.frame, text="")  # Saída para a entrada de texto após clicar no botão
-        self.mensagem.grid(padx=5, pady=10, column=1, row=2)
+        self.nf_entry = Entry(self.frame, width=25)  # Entrada de texto
+        self.nf_entry.grid(padx=1, pady=1, column=2, row=1)
 
+        self.mensagem = Label(self.frame, text="Dados da Nota")  # Saída para a entrada de texto após clicar no botão
+        self.mensagem.grid(column=2, row=3)
+
+        self.listbox = Listbox(self.frame, width=25, height=9)
+        self.listbox.grid(padx=1, pady=1, column=2, row=4)
+
+        self.btn_export = Button(self.frame, text="Export TXT")
+        self.btn_export.grid(padx=[65,1],column=2, row=5)
         pass
 
-    def print_entry(self):
+
+    def print_data(self):
         entry = self.nf_entry.get()
-        self.mensagem["text"] = entry
+        data = split_nf_list(entry)
+        for d in data:
+            if data[0] == '1':
+                self.listbox.delete(0,9)
+                self.listbox.insert(1, "Nº Inválido")
+                pass
+            else:
+                self.listbox.delete(0,self.listbox.size())
+                for c in range(0, self.listbox.size()):
+                    self.listbox.insert(END, data[c])
+                    pass
+    
+
+    def clear_data(self):
+        self.listbox.delete(0, 9)
+        pass
+
+
+    def export_txt(self):
+        ''
+        pass
+
+        
 
 root = Tk()
+root.geometry("250x250")
 Application(root)
 root.mainloop()
