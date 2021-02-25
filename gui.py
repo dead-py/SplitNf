@@ -1,5 +1,5 @@
 from tkinter import Label, Button, Entry, Frame, Grid, mainloop, Tk, Listbox, END
-from SplitNf import *
+from split import *
 
 
 class Application:
@@ -40,25 +40,28 @@ class Application:
     def print_data(self):
         entry = self.nf_entry.get()
         data = split_nf_list(entry)
-        for d in data:
-            if data[0] == '1':
-                self.listbox.delete(0,9)
+        print(data)
+        for d in str(data):
+
+            if d == '1':
+                self.listbox.delete(0,self.listbox.size())
                 self.listbox.insert(1, "Nº Inválido")
                 pass
+
             else:
                 self.listbox.delete(0,self.listbox.size())
-                for c in range(0, self.listbox.size()):
-                    self.listbox.insert(END, data[c])
+
+                for c in range(0,9):
+                    self.listbox.insert(END, d[c])
                     pass
     
 
     def clear_data(self):
-        self.listbox.delete(0, 9)
+        self.listbox.delete(0, self.listbox.size())
         pass
 
 
     def export_txt(self):
-        ''
         pass
 
         
