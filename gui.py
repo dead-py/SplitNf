@@ -20,6 +20,7 @@ class Application:
         self.btn_split.grid(padx=[1, 1], pady=1, column=3, row=1)
 
         self.btn_clear = Button(self.frame,  text='Clear')  # Botão 'Clear'
+        
         self.btn_clear["command"] = self.clear_data
         self.btn_clear.grid(padx=[1,89], pady=5, column=2, row=5)
 
@@ -32,7 +33,7 @@ class Application:
         self.listbox = Listbox(self.frame, width=25, height=9)
         self.listbox.grid(padx=1, pady=1, column=2, row=4)
 
-        self.btn_export = Button(self.frame, text="Export TXT")
+        self.btn_export = Button(self.frame, text="Export CSV")
         self.btn_export.grid(padx=[65,1],column=2, row=5)
         pass
 
@@ -40,15 +41,14 @@ class Application:
     def print_data(self):
         entry = self.nf_entry.get()
 
-        if len(entry) > 44:
+        if len(entry) > 44 or len(entry) == 44:
             data = split_nf_list(entry)
 
-        elif len(entry) == 44:
-            data = split_nf(entry)
+        else:
+            data = split_nf_list('00000000000000000000000000000000000000000000')
 
         if self.listbox:
                 self.listbox.delete(0, self.listbox.size())
-
 
         for d in data:
 
@@ -57,13 +57,9 @@ class Application:
                 self.listbox.insert(1, "Nº Inválido")
 
             else:
-                print(d)
+                #print(d)
                 self.listbox.insert(END, d)
 
-
-
-
-    
 
     def clear_data(self):
         self.listbox.delete(0, self.listbox.size())
