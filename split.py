@@ -1,4 +1,4 @@
-#/!bin/python3
+#!/bin/python3
 
 # MODELO 33 2102 14.564.469/0006-72 55 001 000091965 1 00233526  2
 #        UF A/M  CNPJ               MD SER Nº NOTA   T COD NUM   V

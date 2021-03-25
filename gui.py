@@ -2,6 +2,7 @@
 
 from tkinter import Label, Button, Entry, Frame, Grid, mainloop, Tk, Listbox, END
 from split import *
+from export import *
 
 
 class Application:
@@ -35,13 +36,15 @@ class Application:
         self.listbox = Listbox(self.frame, width=25, height=9)
         self.listbox.grid(padx=1, pady=1, column=2, row=4)
 
-        self.btn_export = Button(self.frame, text="Export CSV")
+        self.btn_export = Button(self.frame, text="Export CSV")  # Exporta a lista de notas para CSV
+        self.btn_export["command"] = self.export_csv
         self.btn_export.grid(padx=[65,1],column=2, row=5)
         pass
 
 
-    def print_data(self):
+    def  print_data(self):
         entry = self.nf_entry.get()
+        
 
         if len(entry) > 44 or len(entry) == 44:
             data = split_nf_list(entry)
@@ -59,7 +62,7 @@ class Application:
                 self.listbox.insert(1, "Nº Inválido")
 
             else:
-                #print(d)
+
                 self.listbox.insert(END, d)
 
 
@@ -68,8 +71,11 @@ class Application:
         pass
 
 
-    def export_txt(self):
-        pass
+    def export_csv(self):
+        entry = self.nf_entry.get()
+        data = split_nf_list(entry)
+        export_csv(data)
+
 
         
 
