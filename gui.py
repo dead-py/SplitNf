@@ -1,3 +1,5 @@
+#!/bin/python3
+
 from tkinter import Label, Button, Entry, Frame, Grid, mainloop, Tk, Listbox, END
 from split import *
 
