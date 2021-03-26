@@ -16,7 +16,6 @@
 
 def split_nf(nf_list):
     lista_return = []
-    print(nf_list)
     if len(nf_list) > 1:
 
         for nf in nf_list:
@@ -60,7 +59,6 @@ def split_nf(nf_list):
 
 def split_single_nf(nf):
     lista_return = []
-    print(nf)
     
     uf_nf = nf[0:2]
     date_nf = nf[2:6]

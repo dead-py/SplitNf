@@ -36,8 +36,8 @@ class Application:
         self.listbox = Listbox(self.frame, width=25, height=9)
         self.listbox.grid(padx=1, pady=1, column=2, row=4)
 
-        self.btn_export = Button(self.frame, text="Export CSV")  # Exporta a lista de notas para CSV
-        self.btn_export["command"] = self.export_csv
+        self.btn_export = Button(self.frame, text="Export TXT")  # Exporta a lista de notas para CSV
+        self.btn_export["command"] = self.export_txt
         self.btn_export.grid(padx=[65,1],column=2, row=5)
         pass
 
@@ -71,10 +71,10 @@ class Application:
         pass
 
 
-    def export_csv(self):
+    def export_txt(self):
         entry = self.nf_entry.get()
         data = split_nf_list(entry)
-        export_csv(data)
+        export_txt(data)
 
 
         

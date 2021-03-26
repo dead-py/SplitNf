@@ -2,20 +2,15 @@
 
 import csv
 
-def export_csv(row_list):
-    to_csv = []
-    to_csv.append(["1","2","3","4","5","6","7","8","9","10"])
+def export_txt(row_list):
+    to_txt = []
+    to_txt.append(["1","2","3","4","5","6","7","8","9","10"])
     
+    txt = open("NF.txt", "w")
     
-        
-    with open('NF.csv', 'w', newline='') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-        #writer.writerows(to_csv)
-    
-        for row in row_list:
-            to_csv.append(row)
-            
-            for c in range(0,9):
-                print([row[c]])
-                writer.writerow([row[c]])
-                
+    for row in row_list:
+        for c in range(0,9):
+            to_txt.append(row[c])
+    print(to_txt)
+    for row in to_txt:
+        print(row)
